@@ -2,57 +2,105 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Multiple Choice</title>
+    <title>Programming Quiz</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-        <div class="container">
-              <div class="row">
-                    <h3 id="heading">Programming multiple choice</h3>
-                    <div class="col-sm-12">
-                        <p>
-                            Welcome to my java , python3 and netwide assembly programming 10 question quiz
-                            <br>
-                            <ol>
-                                <li>
-                                      <strong>Which is statement will print the text "Hello world!" ?</strong>
-                                      <br>
-                                      <ul>
-                                          <li>System.out.println("hello world");</li>
-                                          <li>Sytem.out.println("Hello world!");</li>
-                                          <li>System.out.println("Hello world!");</li>
-                                      </ul>
-                                </li>
-                                <li>
-                                      <strong>Public class BankAccount {
-                                            private int amount ;
-                                            public static void main(String[] args){
-                                                  System.out.println("What is your deposit amount?");
-                                                  amount = new Scanner(System.in).next();
-                                                  new BankAccount().deposit(amount);
-                                            }
-                                            public deposit(double ctAmount){
-                                                this.amount = ctAmount ;
-                                            }
+      <h3 id="heading" align="center">Computer and C basic knowledge</h3>
+      <hr style="height : 3px ; background-color : teal ; ">
+      <div class="container-fluid">
+          <div class="row">
+                <div class="col">
+                    <h3 class="heading" align="center"><b>Instructions</b></h3>
+                    <p>
+                        <ol>
+                            <li>Read the questions carefully before attempting quiz</li>
+                            <li>Dont guess answers , be honest with what you know and dont</li>
+                            <li>Keep track of time when answering questions</li>
+                            <li>This quiz is approximately a 10 min or less but it's not timed</li>
+                            <li>Good luck with finding out how much you know</li>
+                        </ol>
+                    </p>
+                </div>
 
-                                            <p>
-                                                  What are the mistakes that are going to cause the about code
-                                                  to crash during compile time?
-                                            </p>
-                                            <ul>
-                                                  <li></li>
-                                            </ul>
-                                      }</strong>
-                                </li>
-                                <li> </li>
-                                <li> </li>
-                                <li> </li>
-                            </ol>
-                        </p>
-                    </div>
+                <div class="col">
+                   <h3 align="center" class="heading">Quiz</h3>
+                   <hr style="height : 3px ; background-color : teal ; ">
+                   <p id="question">Questions</p>
+                   <div class = "radio">
+                     <form>
+                        <label><input type="radio" onclick="" value="optionA"> Option-A</label><br>
+                        <label><input type="radio" onclick="" value="optionB"> Option-B</label><br>
+                        <label><input type="radio" onclick="" value="optionC"> Option-C</label><br>
+                        <label><input type="radio" onclick="" value="optionD"> Option-D</label><br>
+                    </form>
+                    <br >
+                    <button onclick="askQuestion()" type="button" class="btn btn-lg btn-block">Next Question</button>
+                 </div>
+                  <hr style="height : 3px ; background-color : teal ; ">
+                  <footer class="footer">
+                        <p id="progress">Quiz progress</p>
+                  </footer>
               </div>
-        </div>
+          </div>
+          <hr style="height : 3px ; background-color :teal ; ">
+      </div>
   </body>
 </html>
 <script type="text/javascript">
 
+let currentProgress="Have'nt started yet" ,optA , optB , optC , optD , answer  ;
+let correct = 0 , average = 75 ; percentage = 0 , question , position;
+
+let questions =[
+    {
+        Question1 : "C programming language is ?" ,
+        optionA : "An assembly language" ,
+        optionB : "A third generation high level programming language",
+        optionC : "A machine language",
+        optionD : "All of the above" ,
+        answer : "B"
+    },
+    {
+        Question2 : "The first mechanical computer designed by Charles Babbage was called ?" ,
+        optionA : "Abacus" ,
+        optionB : "Calculator",
+        optionC : "Analytical machine",
+        optionD : "processor" ,
+        answer : "C"
+    },
+    {
+        Question3 : "Which of the following is an example of non volatile memory?" ,
+        optionA : "ROM" ,
+        optionB : "LSI",
+        optionC : "RAM",
+        optionD : "VLSI" ,
+        answer : "A"
+    },
+    {
+        Question4 : "CD–ROM is a kind of?" ,
+        optionA : "Optical disk" ,
+        optionB : "Magnetic disk",
+        optionC : "Magneto-optical disk",
+        optionD : "None of the above" ,
+        answer : "B"
+    },{
+        Question5 : "A device that converts digital signals to analog signals is ?" ,
+        optionA : "A Modem" ,
+        optionB : "A block",
+        optionC : "A packet",
+        optionD : "both (A and B)" ,
+        answer : "A"
+    }
+];
+function fetchElementById(id) {
+          return document.getElementById(id);
+}
+function askQuestion(){
+
+}
+function quizProgress() {
+    return ;
+}
 </script>
