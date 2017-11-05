@@ -1,1 +1,8 @@
-
+.container .row .col-sm-6 {
+    border :
+}
+.container {
+    border : 10px 40px 40px 40px ;
+    border-style: 2px double;
+    border-color: teal;
+}

@@ -2,60 +2,26 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Programming Quiz</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <title>Codespace Project2</title>
+    <style media="screen">
+        div {
+              border : 2px solid ;
+              padding : 10px 40px 40px 40px ;
+        }
+    </style>
   </head>
   <body>
-      <h3 id="heading" align="center">Computer and C basic knowledge</h3>
-      <hr style="height : 3px ; background-color : teal ; ">
-      <div class="container-fluid">
-          <div class="row">
-                <div class="col">
-                    <h3 class="heading" align="center"><b>Instructions</b></h3>
-                    <p>
-                        <ol>
-                            <li>Read the questions carefully before attempting quiz</li>
-                            <li>Dont guess answers , be honest with what you know and dont</li>
-                            <li>Keep track of time when answering questions</li>
-                            <li>This quiz is approximately a 10 min or less but it's not timed</li>
-                            <li>Good luck with finding out how much you know</li>
-                        </ol>
-                    </p>
-                </div>
-
-                <div class="col">
-                   <h3 align="center" class="heading">Quiz</h3>
-                   <hr style="height : 3px ; background-color : teal ; ">
-                   <p id="question">Questions</p>
-                   <div class = "radio">
-                     <form>
-                        <label><input type="radio" onclick="" value="optionA"> Option-A</label><br>
-                        <label><input type="radio" onclick="" value="optionB"> Option-B</label><br>
-                        <label><input type="radio" onclick="" value="optionC"> Option-C</label><br>
-                        <label><input type="radio" onclick="" value="optionD"> Option-D</label><br>
-                    </form>
-                    <br >
-                    <button onclick="askQuestion()" type="button" class="btn btn-lg btn-block">Next Question</button>
-                 </div>
-                  <hr style="height : 3px ; background-color : teal ; ">
-                  <footer class="footer">
-                        <p id="progress">Quiz progress</p>
-                  </footer>
-              </div>
-          </div>
-          <hr style="height : 3px ; background-color :teal ; ">
+      <h2 id="progress"> </h2>
+      <div id="test">
       </div>
   </body>
 </html>
 <script type="text/javascript">
 
-let currentProgress="Have'nt started yet" ,optA , optB , optC , optD , answer  ;
-let correct = 0 , average = 75 ; percentage = 0 , question , position;
-
-let questions =[
-    {
-        Question1 : "C programming language is ?" ,
+        var currentQuestion = 0, test ,quizProgress, question;
+        var choice, choices, chA, chB, chC, correct = 0 , Percentage=0;
+        let questions =[{
+        Question : "C programming language is ?" ,
         optionA : "An assembly language" ,
         optionB : "A third generation high level programming language",
         optionC : "A machine language",
@@ -63,7 +29,7 @@ let questions =[
         answer : "B"
     },
     {
-        Question2 : "The first mechanical computer designed by Charles Babbage was called ?" ,
+        Question : "The first mechanical computer designed by Charles Babbage was called ?" ,
         optionA : "Abacus" ,
         optionB : "Calculator",
         optionC : "Analytical machine",
@@ -71,7 +37,7 @@ let questions =[
         answer : "C"
     },
     {
-        Question3 : "Which of the following is an example of non volatile memory?" ,
+        Question : "Which of the following is an example of non volatile memory?" ,
         optionA : "ROM" ,
         optionB : "LSI",
         optionC : "RAM",
@@ -79,14 +45,14 @@ let questions =[
         answer : "A"
     },
     {
-        Question4 : "CD–ROM is a kind of?" ,
+        Question : "CD–ROM is a kind of?" ,
         optionA : "Optical disk" ,
         optionB : "Magnetic disk",
         optionC : "Magneto-optical disk",
         optionD : "None of the above" ,
         answer : "B"
     },{
-        Question5 : "A device that converts digital signals to analog signals is ?" ,
+        Question : "A device that converts digital signals to analog signals is ?" ,
         optionA : "A Modem" ,
         optionB : "A block",
         optionC : "A packet",
@@ -94,12 +60,45 @@ let questions =[
         answer : "A"
     }
 ];
-function fetchElementById(id) {
-          return document.getElementById(id);
-}
-function askQuestion(){
+        function fetchElement(id){
+            return document.getElementById(id);
+        }
+        function askQuestion(){
+              test = fetchElement("test");
+              if (currentQuestion >= questions.length ){
+                  fetchElement("progress").innerHTML = "Quiz Completed.\n";
+                  test.innerHTML = "Correctly answered Questions : "+correct+" "+((correct/questions.length)*100);
+                  currentQuestion = 0 ;
+                  correct = 0;
+                  return false ;
 
-}
-function quizProgress() {
-}
+              }
+              fetchElement("progress").innerHTML = "Question "+(currentQuestion+1)+" of "+questions.length;
+              question = questions[currentQuestion].Question;
+              choiceA = questions[currentQuestion].optionA ;
+              choiceB = questions[currentQuestion].optionB ;
+              choiceC = questions[currentQuestion].optionC ;
+              choiceD = questions[currentQuestion].optionD ;
+
+              test.innerHTML = "<h3>"+question+"</h3>";
+	            test.innerHTML += "<input type='radio' name='choices' value='A'> "+choiceA+"<br>";
+            	test.innerHTML += "<input type='radio' name='choices' value='B'> "+choiceB+"<br>";
+            	test.innerHTML += "<input type='radio' name='choices' value='C'> "+choiceC+"<br>";
+              test.innerHTML += "<input type='radio' name='choices' value='D'> "+choiceD+"<br><br>"
+            	test.innerHTML += "<button onclick='checkAnswer()'>Submit Answer</button>";
+        }
+        function checkAnswer(){
+	         choices = document.getElementsByName("choices");
+	         for(var i=0; i<choices.length; i++){
+		            if(choices[i].checked){
+			                 choice = choices[i].value;
+		            }
+	         }
+	         if(choice == questions[currentQuestion].answer){
+		           correct++;
+	         }
+	         currentQuestion++;
+	         askQuestion();
+      }
+window.addEventListener("load", askQuestion, false);
 </script>
